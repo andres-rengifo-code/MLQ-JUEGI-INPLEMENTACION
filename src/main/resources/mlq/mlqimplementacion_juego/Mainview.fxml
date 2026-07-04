@@ -15,7 +15,6 @@
             fx:controller="mlq.mlqimplementacion_juego.Controller.MainController"
             styleClass="root-pane">
 
-    <!-- Encabezado -->
     <top>
         <VBox spacing="4" styleClass="header">
             <padding>
@@ -30,14 +29,12 @@
         </VBox>
     </top>
 
-    <!-- Contenido -->
     <center>
         <VBox spacing="18">
             <padding>
                 <Insets top="20" right="24" bottom="20" left="24"/>
             </padding>
 
-            <!-- Archivo -->
             <Label text="Archivo de entrada"
                    styleClass="lbl-seccion"/>
 
@@ -51,7 +48,7 @@
                        styleClass="lbl-info"/>
             </HBox>
 
-            <!-- Esquema -->
+
             <Label text="Esquema de planificación"
                    styleClass="lbl-seccion"/>
 
@@ -66,15 +63,10 @@
                              selected="true"/>
 
                 <RadioButton fx:id="radioEsquema2"
-                             text="RR(3), RR(5), Priority"
-                             toggleGroup="$grupoEsquema"/>
-
-                <RadioButton fx:id="radioEsquema3"
                              text="RR(2), RR(3), STCF"
                              toggleGroup="$grupoEsquema"/>
             </VBox>
 
-            <!-- Estado -->
             <Label text="Estado"
                    styleClass="lbl-seccion"/>
 
@@ -87,7 +79,6 @@
         </VBox>
     </center>
 
-    <!-- Botón principal -->
     <bottom>
         <HBox alignment="CENTER_RIGHT">
             <padding>

@@ -4,24 +4,24 @@ public class Process {
 
     //Datos de archivo de entrada
     private String etiqueta;
-    private int burstTime;
-    private int arrivalTime;
+    private double burstTime;
+    private double arrivalTime;
     private int queue;
     private int priority;
 
     //Datos de archivo de salida
-    private int remainingTime;
-    private int completionTime;
-    private int responseTime = -1;
-    private int waitingTime;
-    private int turnaroundTime;
+    private double remainingTime;
+    private double completionTime;
+    private double responseTime = -1;
+    private double waitingTime;
+    private double turnaroundTime;
 
     //Dato para proceso
     private boolean inReadyQueue = false;
 
 
     //Constructor de procesos
-    public Process(String etiqueta, int burstTime, int arrivalTime, int queue, int priority) {
+    public Process(String etiqueta, double burstTime, double arrivalTime, int queue, int priority) {
         this.etiqueta = etiqueta;
         this.burstTime = burstTime;
         this.arrivalTime = arrivalTime;
@@ -41,19 +41,19 @@ public class Process {
         this.etiqueta = etiqueta;
     }
 
-    public int getBurstTime() {
+    public double getBurstTime() {
         return burstTime;
     }
 
-    public void setBurstTime(int burstTime) {
+    public void setBurstTime(double burstTime) {
         this.burstTime = burstTime;
     }
 
-    public int getArrivalTime() {
+    public double getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(int arrivalTime) {
+    public void setArrivalTime(double arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
@@ -73,43 +73,43 @@ public class Process {
         this.priority = priority;
     }
 
-    public int getRemainingTime() {
+    public double getRemainingTime() {
         return remainingTime;
     }
 
-    public void setRemainingTime(int remainingTime) {
+    public void setRemainingTime(double remainingTime) {
         this.remainingTime = remainingTime;
     }
 
-    public int getCompletionTime() {
+    public double getCompletionTime() {
         return completionTime;
     }
 
-    public void setCompletionTime(int completionTime) {
+    public void setCompletionTime(double completionTime) {
         this.completionTime = completionTime;
     }
 
-    public int getResponseTime() {
+    public double getResponseTime() {
         return responseTime;
     }
 
-    public void setResponseTime(int responseTime) {
+    public void setResponseTime(double responseTime) {
         this.responseTime = responseTime;
     }
 
-    public int getWaitingTime() {
+    public double getWaitingTime() {
         return waitingTime;
     }
 
-    public void setWaitingTime(int waitingTime) {
+    public void setWaitingTime(double waitingTime) {
         this.waitingTime = waitingTime;
     }
 
-    public int getTurnaroundTime() {
+    public double getTurnaroundTime() {
         return turnaroundTime;
     }
 
-    public void setTurnaroundTime(int turnaroundTime) {
+    public void setTurnaroundTime(double turnaroundTime) {
         this.turnaroundTime = turnaroundTime;
     }
 

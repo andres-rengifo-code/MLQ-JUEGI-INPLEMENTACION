@@ -15,16 +15,13 @@ public class MainController {
     private Label lblArchivo;
 
     @FXML
-    private TableView<Process> tablaProcesos;
-
-    @FXML
     private RadioButton radioEsquema1;
 
     @FXML
     private RadioButton radioEsquema2;
 
     @FXML
-    private RadioButton radioEsquema3;
+    private TextArea txtEstado;
 
     private File archivoEntrada;
     private List<Process> procesos;
@@ -33,15 +30,14 @@ public class MainController {
     private final MLQScheduler scheduler = new MLQScheduler();
 
     // =========================
-    // CARGAR ARCHIVO
+    // boton pa cargar el archivo txt
     // =========================
     @FXML
     private void handleCargarArchivo() {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter("Archivos TXT", "*.txt")
-        );
+                new FileChooser.ExtensionFilter("Archivos TXT", "*.txt"));
 
         File file = fileChooser.showOpenDialog(null);
 
@@ -53,18 +49,23 @@ public class MainController {
 
                 lblArchivo.setText("Archivo cargado: " + file.getName());
 
-                // Aquí podrías cargar la tabla si ya la tienes configurada
-                tablaProcesos.getItems().setAll(procesos);
+                if (txtEstado != null) {
+                    txtEstado.setText("Archivo cargado con éxito: " + file.getName() + "\nProcesos encontrados: "
+                            + procesos.size() + "\n\nListo para ejecutar simulación.");
+                }
 
             } catch (Exception e) {
                 lblArchivo.setText("Error al leer archivo");
+                if (txtEstado != null) {
+                    txtEstado.setText("Error al leer archivo:\n" + e.getMessage());
+                }
                 e.printStackTrace();
             }
         }
     }
 
     // =========================
-    // EJECUTAR SIMULACIÓN
+    // cuando le damos al boton de ejecutar toda la simulacion
     // =========================
     @FXML
     private void handleEjecutar() {
@@ -94,21 +95,33 @@ public class MainController {
                         scheduler.getAverageWT(),
                         scheduler.getAverageCT(),
                         scheduler.getAverageRT(),
-                        scheduler.getAverageTAT()
-                );
+                        scheduler.getAverageTAT());
 
                 lblArchivo.setText("Simulación completada y archivo generado");
+
+                if (txtEstado != null) {
+                    txtEstado.setText("¡Simulación completada con éxito!\n");
+                    txtEstado.appendText("Archivo generado: " + output.getName() + "\n\n");
+                    txtEstado.appendText("=== Promedios ===\n");
+                    txtEstado.appendText(String.format("Waiting Time (WT): %.2f\n", scheduler.getAverageWT()));
+                    txtEstado.appendText(String.format("Completion Time (CT): %.2f\n", scheduler.getAverageCT()));
+                    txtEstado.appendText(String.format("Response Time (RT): %.2f\n", scheduler.getAverageRT()));
+                    txtEstado.appendText(String.format("Turnaround Time (TAT): %.2f\n", scheduler.getAverageTAT()));
+                }
 
             }
 
         } catch (Exception e) {
             lblArchivo.setText("Error en simulación");
+            if (txtEstado != null) {
+                txtEstado.setText("Error en simulación:\n" + e.getMessage());
+            }
             e.printStackTrace();
         }
     }
 
     // =========================
-    // SELECCION DE ESQUEMA
+    // pa saber q radio button marco el usuario (q esquema)
     // =========================
     private SchedulerType getSelectedScheme() {
 

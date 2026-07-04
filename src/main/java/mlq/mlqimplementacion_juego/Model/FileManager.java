@@ -39,8 +39,8 @@ public class FileManager {
                 String[] data = line.split(";");
 
                 String etiqueta = data[0].trim();
-                int burstTime = Integer.parseInt(data[1].trim());
-                int arrivalTime = Integer.parseInt(data[2].trim());
+                double burstTime = Double.parseDouble(data[1].trim());
+                double arrivalTime = Double.parseDouble(data[2].trim());
                 int queue = Integer.parseInt(data[3].trim());
                 int priority = Integer.parseInt(data[4].trim());
 
