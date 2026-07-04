@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="mlq.mlqimplementacion_juego.Controller.MainController"
+            styleClass="root-pane">
+
+    <!-- Encabezado -->
+    <top>
+        <VBox spacing="4" styleClass="header">
+            <padding>
+                <Insets top="18" right="24" bottom="18" left="24"/>
+            </padding>
+
+            <Label text="MLQ Scheduler"
+                   styleClass="titulo"/>
+
+            <Label text="Universidad del Valle · Sistemas Operativos · Parcial No. 1"
+                   styleClass="subtitulo"/>
+        </VBox>
+    </top>
+
+    <!-- Contenido -->
+    <center>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="20" right="24" bottom="20" left="24"/>
+            </padding>
+
+            <!-- Archivo -->
+            <Label text="Archivo de entrada"
+                   styleClass="lbl-seccion"/>
+
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Button text="Seleccionar archivo (.txt)"
+                        onAction="#handleCargarArchivo"
+                        styleClass="btn-primario"/>
+
+                <Label fx:id="lblArchivo"
+                       text="Ningún archivo seleccionado"
+                       styleClass="lbl-info"/>
+            </HBox>
+
+            <!-- Esquema -->
+            <Label text="Esquema de planificación"
+                   styleClass="lbl-seccion"/>
+
+            <VBox spacing="8">
+                <fx:define>
+                    <ToggleGroup fx:id="grupoEsquema"/>
+                </fx:define>
+
+                <RadioButton fx:id="radioEsquema1"
+                             text="RR(1), RR(3), SJF"
+                             toggleGroup="$grupoEsquema"
+                             selected="true"/>
+
+                <RadioButton fx:id="radioEsquema2"
+                             text="RR(3), RR(5), Priority"
+                             toggleGroup="$grupoEsquema"/>
+
+                <RadioButton fx:id="radioEsquema3"
+                             text="RR(2), RR(3), STCF"
+                             toggleGroup="$grupoEsquema"/>
+            </VBox>
+
+            <!-- Estado -->
+            <Label text="Estado"
+                   styleClass="lbl-seccion"/>
+
+            <TextArea fx:id="txtEstado"
+                      editable="false"
+                      wrapText="true"
+                      prefHeight="220"
+                      promptText="Aquí aparecerán los mensajes del sistema..."
+                      VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+
+    <!-- Botón principal -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" right="24" bottom="18" left="24"/>
+            </padding>
+
+            <Button fx:id="btnEjecutar"
+                    text="Ejecutar y generar resultado"
+                    onAction="#handleEjecutar"
+                    styleClass="btn-primario"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
