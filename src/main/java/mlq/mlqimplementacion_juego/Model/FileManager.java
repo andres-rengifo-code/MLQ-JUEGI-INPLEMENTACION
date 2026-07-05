@@ -6,14 +6,13 @@ import java.util.List;
 
 public class FileManager {
 
-     //Lee un archivo de entrada y devuelve la lista de procesos.
-
+    // Lee un archivo de entrada y devuelve la lista de procesos listos pa usarse
     public List<Process> readFile(File file) throws IOException {
 
-        //Creamos una lista de procesos
+        // Creamos una lista de procesos vacia
         List<Process> processes = new ArrayList<>();
 
-        // BufferedReader permite leer el archivo línea por línea.
+        // BufferedReader permite leer el archivo línea por línea pa que sea mas facil
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
 
             String line;
@@ -36,6 +35,7 @@ public class FileManager {
                     continue;
                 }
 
+                // partimos la linea por los puntos y comas (;) pa sacar cada dato
                 String[] data = line.split(";");
 
                 String etiqueta = data[0].trim();
@@ -44,13 +44,13 @@ public class FileManager {
                 int queue = Integer.parseInt(data[3].trim());
                 int priority = Integer.parseInt(data[4].trim());
 
+                // armamos el objeto proceso con toda la info que acabamos de leer
                 Process process = new Process(
                         etiqueta,
                         burstTime,
                         arrivalTime,
                         queue,
-                        priority
-                );
+                        priority);
 
                 processes.add(process);
             }
@@ -59,18 +59,23 @@ public class FileManager {
         return processes;
     }
 
+    // Metodo para escribir los resultados de la simulacion en un archivo nuevo
+    // Le pasamos donde guardar, la lista de procesos ya modificada y los promedios
+    // globales
     public void writeFile(File file, List<Process> processes,
-                          double wt, double ct, double rt, double tat) throws IOException {
+            double wt, double ct, double rt, double tat) throws IOException {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 
-            // Encabezado
+            // Encabezado pa que se entienda que es cada columna en el txt
             writer.write("# etiqueta; BT; AT; Q; Pr; WT; CT; RT; TAT");
             writer.newLine();
 
-            // Procesos
+            // Ciclo para escribir los datos de cada proceso
             for (Process p : processes) {
 
+                // concatenamos todos los datos con punto y coma pa escribirlos en el formato
+                // correcto
                 writer.write(
                         p.getEtiqueta() + ";" +
                                 p.getBurstTime() + ";" +
@@ -80,24 +85,21 @@ public class FileManager {
                                 p.getWaitingTime() + ";" +
                                 p.getCompletionTime() + ";" +
                                 p.getResponseTime() + ";" +
-                                p.getTurnaroundTime()
-                );
+                                p.getTurnaroundTime());
 
                 writer.newLine();
             }
 
             writer.newLine();
 
-            // Promedios finales
+            // Promedios finales los ponemos hasta abajo pa que se vean ordenados
             writer.write(
                     "# WT=" + wt +
                             "; CT=" + ct +
                             "; RT=" + rt +
-                            "; TAT=" + tat + ";"
-            );
+                            "; TAT=" + tat + ";");
 
         }
     }
-
 
 }

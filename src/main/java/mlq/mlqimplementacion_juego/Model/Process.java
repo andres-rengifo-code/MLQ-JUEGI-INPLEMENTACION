@@ -2,25 +2,25 @@ package mlq.mlqimplementacion_juego.Model;
 
 public class Process {
 
-    //Datos de archivo de entrada
+    // Datos de archivo de entrada
     private String etiqueta;
     private double burstTime;
     private double arrivalTime;
     private int queue;
     private int priority;
 
-    //Datos de archivo de salida
-    private double remainingTime;
+    // Datos de archivo de salida (lo que se calcula despues de la simulacion)
+    private double remainingTime; // tiempo que le falta por ejecutar
     private double completionTime;
-    private double responseTime = -1;
+    private double responseTime = -1; // lo inicializo en -1 pa saber que todavia no tiene respuesta la primera vez
     private double waitingTime;
     private double turnaroundTime;
 
-    //Dato para proceso
+    // Dato para proceso
     private boolean inReadyQueue = false;
 
-
-    //Constructor de procesos
+    // Constructor de procesos
+    // le pasamos todos los datos que vienen separados por punto y coma en el txt
     public Process(String etiqueta, double burstTime, double arrivalTime, int queue, int priority) {
         this.etiqueta = etiqueta;
         this.burstTime = burstTime;
@@ -31,8 +31,8 @@ public class Process {
 
     }
 
-    //===GETHER AND SETHER===
-
+    // ===GETTER AND SETTER===
+    // todos los metodos para sacar y meter datos de las variables privadas
     public String getEtiqueta() {
         return etiqueta;
     }

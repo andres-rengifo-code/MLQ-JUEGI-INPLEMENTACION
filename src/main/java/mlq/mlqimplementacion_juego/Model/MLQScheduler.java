@@ -3,7 +3,8 @@ package mlq.mlqimplementacion_juego.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-    // esta es la clase princiapl q hace la simulacion del MLQ
+// esta es la clase princiapl q hace la simulacion del MLQ
+// Logica de la planificacion de los procesos dependiendo del esquema
 public class MLQScheduler {
 
     private List<Process> queue1 = new ArrayList<>();
@@ -30,6 +31,8 @@ public class MLQScheduler {
         currentTime = 0;
 
         // Reset process values
+        // esto es super importante pq si corremos la simulacion otra vez, los valores
+        // tienen q regresar a 0 o truena
         for (Process p : processes) {
             p.setRemainingTime(p.getBurstTime());
             p.setInReadyQueue(false);

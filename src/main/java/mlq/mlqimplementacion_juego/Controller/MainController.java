@@ -23,15 +23,16 @@ public class MainController {
     @FXML
     private TextArea txtEstado;
 
+    // variables globales para guardar el archivo q sube el usuario y la lista de
+    // procesos
     private File archivoEntrada;
     private List<Process> procesos;
 
     private final FileManager fileManager = new FileManager();
     private final MLQScheduler scheduler = new MLQScheduler();
 
-    // =========================
-    // boton pa cargar el archivo txt
-    // =========================
+    // Metodo conexion con el boton cargar archivo
+    // boton pa cargar el archivo txt, abre el explorador de archivos
     @FXML
     private void handleCargarArchivo() {
 
@@ -64,13 +65,14 @@ public class MainController {
         }
     }
 
-    // =========================
-    // cuando le damos al boton de ejecutar toda la simulacion
-    // =========================
+    // Metodo conexion con el boton ejecutar conectando la logica de mlq
+
     @FXML
     private void handleEjecutar() {
 
         if (procesos == null || procesos.isEmpty()) {
+            // validacion para que node error si el usuario le da ejecutar sin cargar
+            // archivo
             lblArchivo.setText("Primero carga un archivo");
             return;
         }
@@ -81,7 +83,7 @@ public class MainController {
 
             scheduler.execute(procesos, type);
 
-            // Guardar archivo de salida
+            // Guardar archivo de salida (te pide donde guardarlo)
             FileChooser fileChooser = new FileChooser();
             fileChooser.setInitialFileName("resultado.txt");
 
@@ -120,9 +122,8 @@ public class MainController {
         }
     }
 
-    // =========================
-    // pa saber q radio button marco el usuario (q esquema)
-    // =========================
+    // Metodo pa saber q radio button marco el usuario (q esquema)
+
     private SchedulerType getSelectedScheme() {
 
         if (radioEsquema1.isSelected()) {
