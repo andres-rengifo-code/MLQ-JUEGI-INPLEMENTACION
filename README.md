@@ -21,8 +21,6 @@ Para ejecutar el proyecto en tu entorno local, asegúrate de tener instalado:
 
 ## Instrucciones de Ejecución
 
-Como el proyecto está construido sobre Maven con el plugin de JavaFX, compilarlo y ejecutarlo es muy sencillo:
-
 1. Clona el repositorio en tu máquina local:
    ```bash
    git clone git@github.com:andres-rengifo-code/MLQ-JUEGI-INPLEMENTACION.git
@@ -44,5 +42,5 @@ Como el proyecto está construido sobre Maven con el plugin de JavaFX, compilarl
 * `Model/`: Contiene la lógica del planificador (`MLQScheduler`), la entidad `Process`, constantes (`SchedulerType`), y la gestión de archivos (`FileManager`).
 * `View/`: Contiene los archivos FXML de la interfaz visual.
 
-## Autor(es)
-Andrés Rengifo (y equipo de desarrollo) - Estudiante(s) de Sistemas Operativos.
+## Autor
+Andrés Felipe Rengifo Rodriguez
