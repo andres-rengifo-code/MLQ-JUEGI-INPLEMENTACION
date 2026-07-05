@@ -31,8 +31,9 @@ Para ejecutar el proyecto en tu entorno local, asegúrate de tener instalado:
    ```
 3. Limpia, compila y ejecuta la aplicación usando Maven:
    ```bash
-   mvn clean javafx:run
+   ./mvnw clean javafx:run
    ```
+   *(En Windows puedes usar `mvnw.cmd clean javafx:run` si estás en CMD)*
 
 *(Nota: Si usas IntelliJ IDEA, simplemente puedes abrir la carpeta del proyecto, dejar que Maven descargue las dependencias, y correr la clase `StartApp`)*.
 
